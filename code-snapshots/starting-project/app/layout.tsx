@@ -21,23 +21,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
-        <div className="min-h-screen bg-gradient-to-b from-cyan-50 via-white to-sky-100 text-slate-900">
-          <header className="border-b border-sky-200/70 bg-white/85 backdrop-blur">
+        <div className="min-h-screen bg-[radial-gradient(circle_at_top,_var(--surface-strong),_var(--background)_65%)] text-[color:var(--foreground)]">
+          <header className="border-b border-[color:var(--border)] bg-[color:var(--surface)] backdrop-blur">
             <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-4">
-              <Link href="/" className="text-lg font-semibold tracking-tight text-slate-900">
+              <Link
+                href="/"
+                className="text-lg font-semibold tracking-tight text-[color:var(--foreground)]"
+              >
                 TinyNotes
               </Link>
               <nav className="flex items-center gap-2 text-sm font-medium">
                 {/* TODO: Replace with auth-aware nav links once sessions are wired. */}
                 <Link
                   href="/login"
-                  className="rounded-md px-3 py-1.5 text-slate-700 transition hover:bg-sky-100 hover:text-sky-800"
+                  className="rounded-md px-3 py-1.5 text-[color:var(--text-muted)] transition hover:bg-[color:var(--surface-muted)] hover:text-[color:var(--foreground)]"
                 >
                   Login
                 </Link>
                 <Link
                   href="/register"
-                  className="rounded-md px-3 py-1.5 text-slate-700 transition hover:bg-sky-100 hover:text-sky-800"
+                  className="rounded-md px-3 py-1.5 text-[color:var(--text-muted)] transition hover:bg-[color:var(--surface-muted)] hover:text-[color:var(--foreground)]"
                 >
                   Register
                 </Link>
