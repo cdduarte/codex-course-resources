@@ -12,8 +12,7 @@
   --accent-foreground: #e8f2ff;
   --text-muted: #2d4868;
   --font-sans-stack:
-    "Avenir Next", "Segoe UI", "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial,
-    sans-serif;
+    "Avenir Next", "Segoe UI", "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
 }
 
 @theme inline {
