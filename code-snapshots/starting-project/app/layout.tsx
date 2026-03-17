@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Codex Demo",
-  description: "A Codex Demo App",
+  title: "TinyNotes Scaffold",
+  description: "Base route and layout scaffold for TinyNotes",
 };
 
 export default function RootLayout({
