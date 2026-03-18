@@ -1,4 +1,6 @@
 import { PageShell, SectionPlaceholder } from "@/src/components";
+import { getPublicSharedNoteByToken } from "@/src/lib/share-notes";
+import { notFound } from "next/navigation";
 
 type SharedNotePageProps = {
   params: Promise<{
@@ -8,12 +10,17 @@ type SharedNotePageProps = {
 
 export default async function SharedNotePage({ params }: SharedNotePageProps) {
   const { token } = await params;
+  const sharedNote = getPublicSharedNoteByToken(token);
+
+  if (!sharedNote) {
+    notFound();
+  }
 
   return (
     <PageShell
       eyebrow="Route: /s/[token]"
       title="Shared Note View Scaffold"
-      description={`Static placeholder for share token "${token}". Public token resolution is intentionally not wired.`}
+      description={`Validated placeholder for shared note "${sharedNote.title || sharedNote.id}". Rich content rendering is intentionally not wired.`}
     >
       <SectionPlaceholder
         title="Shared Content Area"
@@ -21,7 +28,7 @@ export default async function SharedNotePage({ params }: SharedNotePageProps) {
       />
       <SectionPlaceholder
         title="Missing/Invalid Share Handling"
-        description="Reserved placeholder for future 404 integration for invalid or revoked tokens."
+        description="Invalid, disabled, and revoked tokens now resolve through the app's 404 boundary."
       />
     </PageShell>
   );
