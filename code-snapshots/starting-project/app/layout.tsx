@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Inter } from "next/font/google";
+import { LogoutButton } from "@/src/components";
+import { getServerSession } from "@/src/lib/auth-session";
 import "./globals.css";
 
 const inter = Inter({
@@ -13,11 +15,14 @@ export const metadata: Metadata = {
   description: "TinyNotes app shell and routing scaffold",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession();
+  const isLoggedIn = Boolean(session);
+
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
@@ -25,25 +30,30 @@ export default function RootLayout({
           <header className="border-b border-[color:var(--border)] bg-[color:var(--surface)] backdrop-blur">
             <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-4">
               <Link
-                href="/"
+                href={isLoggedIn ? "/notes" : "/"}
                 className="text-lg font-semibold tracking-tight text-[color:var(--foreground)]"
               >
                 TinyNotes
               </Link>
               <nav className="flex items-center gap-2 text-sm font-medium">
-                {/* TODO: Replace with auth-aware nav links once sessions are wired. */}
-                <Link
-                  href="/login"
-                  className="rounded-md px-3 py-1.5 text-[color:var(--text-muted)] transition hover:bg-[color:var(--surface-muted)] hover:text-[color:var(--foreground)]"
-                >
-                  Login
-                </Link>
-                <Link
-                  href="/register"
-                  className="rounded-md px-3 py-1.5 text-[color:var(--text-muted)] transition hover:bg-[color:var(--surface-muted)] hover:text-[color:var(--foreground)]"
-                >
-                  Register
-                </Link>
+                {isLoggedIn ? (
+                  <LogoutButton />
+                ) : (
+                  <>
+                    <Link
+                      href="/login"
+                      className="rounded-md px-3 py-1.5 text-[color:var(--text-muted)] transition hover:bg-[color:var(--surface-muted)] hover:text-[color:var(--foreground)]"
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      href="/register"
+                      className="rounded-md px-3 py-1.5 text-[color:var(--text-muted)] transition hover:bg-[color:var(--surface-muted)] hover:text-[color:var(--foreground)]"
+                    >
+                      Register
+                    </Link>
+                  </>
+                )}
               </nav>
             </div>
           </header>

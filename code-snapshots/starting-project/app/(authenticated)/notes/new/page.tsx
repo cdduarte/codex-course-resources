@@ -1,6 +1,9 @@
 import { PageShell, SectionPlaceholder } from "@/src/components";
+import { requireServerSession } from "@/src/lib/auth-session";
 
-export default function NewNotePage() {
+export default async function NewNotePage() {
+  await requireServerSession();
+
   return (
     <PageShell
       eyebrow="Route: /notes/new"

@@ -1,4 +1,5 @@
 import { PageShell, SectionPlaceholder } from "@/src/components";
+import { requireServerSession } from "@/src/lib/auth-session";
 
 type NoteDetailPageProps = {
   params: Promise<{
@@ -7,6 +8,7 @@ type NoteDetailPageProps = {
 };
 
 export default async function NoteDetailPage({ params }: NoteDetailPageProps) {
+  await requireServerSession();
   const { id } = await params;
 
   return (

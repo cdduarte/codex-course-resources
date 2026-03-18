@@ -9,7 +9,7 @@ export default function AuthenticatedLayout({ children }: AuthenticatedLayoutPro
   return (
     <RouteLayoutShell
       area="Authenticated Area"
-      description="Protected notes surface scaffold. Access-control checks are intentionally not implemented in this step."
+      description="Protected notes surface scaffold. Access checks are enforced per route page."
     >
       {children}
     </RouteLayoutShell>
