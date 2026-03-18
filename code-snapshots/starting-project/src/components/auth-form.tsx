@@ -45,6 +45,9 @@ const AUTH_COPY: Record<
 };
 
 const AUTH_ERROR_MESSAGE = "We couldn't complete that request. Please try again.";
+const AUTH_FIELD_LABEL_CLASS = "text-sm font-semibold text-foreground";
+const AUTH_FIELD_INPUT_CLASS =
+  "mt-2 block w-full rounded-lg border border-(--border) bg-(--surface-strong) px-3 py-2 text-sm text-foreground shadow-sm shadow-black/10 outline-none transition focus:border-(--accent) focus:ring-2 focus:ring-(--accent)/40";
 
 export function AuthForm({ mode }: AuthFormProps) {
   const router = useRouter();
@@ -102,15 +105,12 @@ export function AuthForm({ mode }: AuthFormProps) {
     <PageShell eyebrow={copy.eyebrow} title={copy.title} description={copy.description}>
       <form
         onSubmit={handleSubmit}
-        className="rounded-xl border border-[color:var(--border)] bg-[color:var(--surface-muted)] p-4"
+        className="rounded-xl border border-(--border) bg-(--surface-muted) p-4"
       >
         <div className="space-y-4">
           {mode === "register" ? (
             <div>
-              <label
-                htmlFor={`${mode}-name`}
-                className="text-sm font-semibold text-[color:var(--foreground)]"
-              >
+              <label htmlFor={`${mode}-name`} className={AUTH_FIELD_LABEL_CLASS}>
                 Name
               </label>
               <input
@@ -121,16 +121,13 @@ export function AuthForm({ mode }: AuthFormProps) {
                 required
                 value={name}
                 onChange={(event) => setName(event.target.value)}
-                className="mt-2 block w-full rounded-lg border border-[color:var(--border)] bg-[color:var(--surface-strong)] px-3 py-2 text-sm text-[color:var(--foreground)] shadow-sm shadow-black/10 outline-none transition focus:border-[color:var(--accent)] focus:ring-2 focus:ring-[color:var(--accent)]/40"
+                className={AUTH_FIELD_INPUT_CLASS}
               />
             </div>
           ) : null}
 
           <div>
-            <label
-              htmlFor={`${mode}-email`}
-              className="text-sm font-semibold text-[color:var(--foreground)]"
-            >
+            <label htmlFor={`${mode}-email`} className={AUTH_FIELD_LABEL_CLASS}>
               Email
             </label>
             <input
@@ -141,15 +138,12 @@ export function AuthForm({ mode }: AuthFormProps) {
               required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="mt-2 block w-full rounded-lg border border-[color:var(--border)] bg-[color:var(--surface-strong)] px-3 py-2 text-sm text-[color:var(--foreground)] shadow-sm shadow-black/10 outline-none transition focus:border-[color:var(--accent)] focus:ring-2 focus:ring-[color:var(--accent)]/40"
+              className={AUTH_FIELD_INPUT_CLASS}
             />
           </div>
 
           <div>
-            <label
-              htmlFor={`${mode}-password`}
-              className="text-sm font-semibold text-[color:var(--foreground)]"
-            >
+            <label htmlFor={`${mode}-password`} className={AUTH_FIELD_LABEL_CLASS}>
               Password
             </label>
             <input
@@ -161,7 +155,7 @@ export function AuthForm({ mode }: AuthFormProps) {
               minLength={8}
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className="mt-2 block w-full rounded-lg border border-[color:var(--border)] bg-[color:var(--surface-strong)] px-3 py-2 text-sm text-[color:var(--foreground)] shadow-sm shadow-black/10 outline-none transition focus:border-[color:var(--accent)] focus:ring-2 focus:ring-[color:var(--accent)]/40"
+              className={AUTH_FIELD_INPUT_CLASS}
             />
           </div>
         </div>
@@ -175,17 +169,17 @@ export function AuthForm({ mode }: AuthFormProps) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="mt-5 inline-flex w-full items-center justify-center rounded-lg bg-[color:var(--accent)] px-4 py-2.5 text-sm font-semibold text-[color:var(--accent-foreground)] transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)]/40"
+          className="mt-5 inline-flex w-full items-center justify-center rounded-lg bg-(--accent) px-4 py-2.5 text-sm font-semibold text-(--accent-foreground) transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent)/40"
         >
           {isSubmitting ? "Please wait..." : copy.submitLabel}
         </button>
       </form>
 
-      <p className="text-sm text-[color:var(--text-muted)]">
+      <p className="text-sm text-(--text-muted)">
         {copy.switchPrompt}{" "}
         <Link
           href={copy.switchHref}
-          className="font-semibold text-[color:var(--accent)] transition hover:brightness-125"
+          className="font-semibold text-(--accent) transition hover:brightness-125"
         >
           {copy.switchLabel}
         </Link>

@@ -11,6 +11,7 @@
   --accent: #275f9e;
   --accent-foreground: #e8f2ff;
   --text-muted: #2d4868;
+  --shell-gradient: radial-gradient(circle at top, var(--surface-strong), var(--background) 65%);
   --font-sans-stack:
     "Avenir Next", "Segoe UI", "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
 }

@@ -26,12 +26,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
-        <div className="min-h-screen bg-[radial-gradient(circle_at_top,_var(--surface-strong),_var(--background)_65%)] text-[color:var(--foreground)]">
-          <header className="border-b border-[color:var(--border)] bg-[color:var(--surface)] backdrop-blur">
+        <div className="min-h-screen bg-(image:--shell-gradient) text-foreground">
+          <header className="border-b border-(--border) bg-(--surface) backdrop-blur">
             <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-4">
               <Link
                 href={isLoggedIn ? "/notes" : "/"}
-                className="text-lg font-semibold tracking-tight text-[color:var(--foreground)]"
+                className="text-lg font-semibold tracking-tight text-foreground"
               >
                 TinyNotes
               </Link>
@@ -42,13 +42,13 @@ export default async function RootLayout({
                   <>
                     <Link
                       href="/login"
-                      className="rounded-md px-3 py-1.5 text-[color:var(--text-muted)] transition hover:bg-[color:var(--surface-muted)] hover:text-[color:var(--foreground)]"
+                      className="rounded-md px-3 py-1.5 text-(--text-muted) transition hover:bg-(--surface-muted) hover:text-foreground"
                     >
                       Login
                     </Link>
                     <Link
                       href="/register"
-                      className="rounded-md px-3 py-1.5 text-[color:var(--text-muted)] transition hover:bg-[color:var(--surface-muted)] hover:text-[color:var(--foreground)]"
+                      className="rounded-md px-3 py-1.5 text-(--text-muted) transition hover:bg-(--surface-muted) hover:text-foreground"
                     >
                       Register
                     </Link>

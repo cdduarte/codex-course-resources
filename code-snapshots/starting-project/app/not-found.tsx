@@ -2,7 +2,7 @@ import { PageShell, SectionPlaceholder } from "@/src/components";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_var(--surface-strong),_var(--background)_65%)] px-4 py-8">
+    <div className="min-h-screen bg-(image:--shell-gradient) px-4 py-8">
       <div className="mx-auto w-full max-w-5xl">
         <PageShell
           eyebrow="404"
