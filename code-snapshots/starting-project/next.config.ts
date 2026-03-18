@@ -1,12 +1,24 @@
 import type { NextConfig } from "next";
 
+const isDevelopment = process.env.NODE_ENV !== "production";
+
+const scriptSources = ["'self'", "'unsafe-inline'"];
+if (isDevelopment) {
+  scriptSources.push("'unsafe-eval'");
+}
+
+const connectSources = ["'self'"];
+if (isDevelopment) {
+  connectSources.push("ws:", "wss:");
+}
+
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "script-src 'self'",
+  `script-src ${scriptSources.join(" ")}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
-  "connect-src 'self'",
+  `connect-src ${connectSources.join(" ")}`,
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
