@@ -9,7 +9,12 @@
     "migrate:up": "bun scripts/migrate.ts up",
     "migrate:down": "bun scripts/migrate.ts down",
     "lint": "oxlint",
-    "format": "oxfmt"
+    "format": "oxfmt",
+    "test": "bun run test:unit",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "@tiptap/pm": "^3.20.4",
