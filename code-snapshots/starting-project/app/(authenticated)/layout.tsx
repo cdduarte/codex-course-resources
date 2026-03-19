@@ -1,17 +1,11 @@
 import type { ReactNode } from "react";
-import { RouteLayoutShell } from "@/src/components";
+import { requireServerSession } from "@/src/lib/auth-session";
 
 type AuthenticatedLayoutProps = {
   children: ReactNode;
 };
 
-export default function AuthenticatedLayout({ children }: AuthenticatedLayoutProps) {
-  return (
-    <RouteLayoutShell
-      area="Authenticated Area"
-      description="Protected notes surface scaffold. Access checks are enforced per route page."
-    >
-      {children}
-    </RouteLayoutShell>
-  );
+export default async function AuthenticatedLayout({ children }: AuthenticatedLayoutProps) {
+  await requireServerSession();
+  return <>{children}</>;
 }

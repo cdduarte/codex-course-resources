@@ -1,5 +1,8 @@
-import { PageShell, SectionPlaceholder } from "@/src/components";
+import { EditNoteEditor, PageShell } from "@/src/components";
 import { requireServerSession } from "@/src/lib/auth-session";
+import { getUserNoteById } from "@/src/lib/notes";
+import { notFound } from "next/navigation";
+import { updateNoteAction } from "../actions";
 
 type NoteDetailPageProps = {
   params: Promise<{
@@ -8,26 +11,26 @@ type NoteDetailPageProps = {
 };
 
 export default async function NoteDetailPage({ params }: NoteDetailPageProps) {
-  await requireServerSession();
+  const session = await requireServerSession();
   const { id } = await params;
+  const note = getUserNoteById(id, session.user.id);
+
+  if (!note) {
+    notFound();
+  }
 
   return (
     <PageShell
-      eyebrow="Route: /notes/[id]"
-      title="Note Detail/Edit Scaffold"
-      description={`Static scaffold for note id "${id}". Real note lookup and authorization are intentionally omitted.`}
+      eyebrow="Notes"
+      title={note.title || "Untitled note"}
+      description="Edit your note content with autosave enabled."
     >
-      <SectionPlaceholder
-        title="Editable Title + Content Area"
-        description="Future note content editing experience will be introduced here."
-      />
-      <SectionPlaceholder
-        title="Share Controls Area"
-        description="Reserved for enable/disable share controls and share-link details."
-      />
-      <SectionPlaceholder
-        title="Danger Zone Area"
-        description="Placeholder for future delete-note controls."
+      <EditNoteEditor
+        noteId={note.id}
+        initialTitle={note.title}
+        initialContentJson={note.contentJson}
+        initialUpdatedAt={note.updatedAt}
+        saveAction={updateNoteAction}
       />
     </PageShell>
   );

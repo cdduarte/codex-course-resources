@@ -1,28 +1,14 @@
-import { PageShell, SectionPlaceholder } from "@/src/components";
-import { requireServerSession } from "@/src/lib/auth-session";
+import { CreateNoteEditor, PageShell } from "@/src/components";
+import { createNoteFormAction } from "../actions";
 
-export default async function NewNotePage() {
-  await requireServerSession();
-
+export default function NewNotePage() {
   return (
     <PageShell
-      eyebrow="Route: /notes/new"
-      title="New Note Scaffold"
-      description="Static page scaffold for creating a new note."
+      eyebrow="Notes"
+      title="Create Note"
+      description="Draft your note and submit when you're ready."
     >
-      <SectionPlaceholder
-        title="Title Input Area"
-        description="Future note title input will be placed here."
-      />
-      <SectionPlaceholder
-        title="Editor Area"
-        description="Future rich text editor UI will be attached in this section."
-        note="No editor integration in this scaffold."
-      />
-      <SectionPlaceholder
-        title="Save Status Area"
-        description="Reserved for future save-state and error messaging."
-      />
+      <CreateNoteEditor createAction={createNoteFormAction} />
     </PageShell>
   );
 }
